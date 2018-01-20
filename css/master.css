@@ -1,0 +1,22 @@
+.w6 {
+  width: 40rem;
+}
+
+.right-arrow {
+  transform: translatex(-8px) rotate(45deg);
+  transform-origin: 50% 50% 0;
+}
+
+.left-arrow {
+  transform: translatex(8px) rotate(45deg);
+  transform-origin: 50% 50% 0;
+}
+
+.raleway {
+  font-weight: 400;
+  font-family: 'Raleway', sans-serif;
+}
+
+.merriweather {
+  font-family: 'Merriweather', serif;
+}
