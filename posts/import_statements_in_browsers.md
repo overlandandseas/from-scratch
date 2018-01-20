@@ -1,0 +1,1 @@
+Did you know you can use import statements in browsers and they work?
