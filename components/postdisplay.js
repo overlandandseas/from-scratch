@@ -36,7 +36,8 @@ export function makeSoundPostDisplay(post, onTitleClick) {
         .append(new ElementBuilder('a')
           .addClass('f4', 'raleway', 'link', 'pointer', 'underline-hover', 'black')
           .attr('href', `/posts/${post.file.split('.md')[0]}/`)
-          .html(post.title))
+          .html(post.title)
+          .click(onTitleClick))
 
         .append(new ElementBuilder('p')
           .addClass('black-', 'merriweather', 'f5', 'lh-copy')

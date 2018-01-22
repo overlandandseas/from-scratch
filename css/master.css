@@ -20,3 +20,7 @@
 .merriweather {
   font-family: 'Merriweather', serif;
 }
+
+.opacity-transition {
+  transition: opacity .15s ease-in;
+}

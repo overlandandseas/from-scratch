@@ -1,8 +1,9 @@
 // javascript
 import parse from './lib/snarkdown.es.js'
 import { makeCodePostDisplay, makeSoundPostDisplay } from './components/postdisplay.js'
+import { loadPostPage } from './post.js'
 
-const posts = [{
+export const posts = [{
   title: 'Import Statements In Browsers',
   file: 'import-statements-in-browsers.md',
   text: 'Did you know you can use import statements in browsers and they work?',
@@ -26,10 +27,26 @@ const codeDiv = document.getElementById('code-side')
 const soundDiv = document.getElementById('sound-side')
 
 const codePosts = posts.map(makeCodePostDisplay)
-const soundPosts = posts.map(makeSoundPostDisplay)
+const soundPosts = posts.map(post => makeSoundPostDisplay(post, makeHandleSountTitleClick(post)))
 
 codePosts.forEach(elm => codeDiv.appendChild(elm))
 soundPosts.forEach(elm => soundDiv.appendChild(elm))
 
 setTimeout(() => codePosts.forEach(elm => elm.classList.remove('o-0')), 150)
 setTimeout(() => soundPosts.forEach(elm => elm.classList.remove('o-0')), 150)
+
+function makeHandleSountTitleClick(post) {
+  return function (evt) {
+    if (evt.ctrlKey || evt.shiftKey || evt.metaKey || (evt.button && evt.button == 1)) return
+    
+    evt.preventDefault()
+    codeDiv.classList.add('o-0')
+    soundDiv.classList.add('o-0')
+    setTimeout(() => {
+      codeDiv.parentNode.removeChild(codeDiv)
+      soundDiv.parentNode.removeChild(soundDiv)
+      
+      loadPostPage(post)
+    }, 150)
+  }
+}

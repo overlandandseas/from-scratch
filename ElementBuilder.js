@@ -26,6 +26,7 @@ export default class ElementBuilder {
 
   click(handler) {
     this.elm.addEventListener('click', handler)
+    return this
   }
 
   html(htmlToAdd) {
