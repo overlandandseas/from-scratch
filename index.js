@@ -38,15 +38,20 @@ setTimeout(() => soundPosts.forEach(elm => elm.classList.remove('o-0')), 150)
 function makeHandleSountTitleClick(post) {
   return function (evt) {
     if (evt.ctrlKey || evt.shiftKey || evt.metaKey || (evt.button && evt.button == 1)) return
-    
+
     evt.preventDefault()
-    codeDiv.classList.add('o-0')
+
+    codeDiv.style.transition = 'transform .25s ease-out'
+    codeDiv.style.transform = 'translateX(-100%)'
+
+    soundDiv.style.transition = 'opacity .25s ease-out'
     soundDiv.classList.add('o-0')
+
     setTimeout(() => {
       codeDiv.parentNode.removeChild(codeDiv)
       soundDiv.parentNode.removeChild(soundDiv)
-      
+
       loadPostPage(post)
-    }, 150)
+    }, 250)
   }
 }
