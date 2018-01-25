@@ -2,6 +2,7 @@
 
 ![lil peep hellboy](https://i1.sndcdn.com/artworks-000185214461-55vwwi-t500x500.jpg)
 
+
 It wasn't until the very beginning of 2017 when I found out about lil peep (the girls music video to be exact). This revival of music I listened to in High School like samples from Funeral for a Friend, Senses Fail, and Brand New. Thanks to producers like nedarb and lederrick, its made this music additive to listen to, a mix of reminding how good music was a few years ago and also seeing what it has become now.
 
 

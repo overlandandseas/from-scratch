@@ -40,7 +40,7 @@ export function makeSoundPostDisplay(post, onTitleClick) {
           .click(onTitleClick))
 
         .append(new ElementBuilder('p')
-          .addClass('black-', 'merriweather', 'f5', 'lh-copy')
+          .addClass('black-60', 'merriweather', 'f5', 'lh-copy')
           .html(post.text))
         .append(new ElementBuilder('div')
           .addClass('black-30', 'f6', 'raleway', 'flex', 'justify-start')
