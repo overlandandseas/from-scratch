@@ -17,7 +17,7 @@ export const posts = [{
   date: 'January 19th, 2018'
 }, {
   title: 'Lightbox From Scratch',
-  file: 'lightbox-from-scractch.md',
+  file: 'lightbox-from-scratch.md',
   text: 'You don\'t need jquery or lightbox to create nice images you can click and see larger versions with nice backgrounds.',
   tags: ['web', 'code'],
   date: 'November 19th, 2017'
@@ -26,8 +26,8 @@ export const posts = [{
 const codeDiv = document.getElementById('code-side')
 const soundDiv = document.getElementById('sound-side')
 
-const codePosts = posts.map(makeCodePostDisplay)
-const soundPosts = posts.map(post => makeSoundPostDisplay(post, makeHandleSountTitleClick(post)))
+const codePosts = posts.map(post => makeCodePostDisplay(post, makeTitleClickHandler(false, post)))
+const soundPosts = posts.map(post => makeSoundPostDisplay(post, makeTitleClickHandler(true, post)))
 
 codePosts.forEach(elm => codeDiv.appendChild(elm))
 soundPosts.forEach(elm => soundDiv.appendChild(elm))
@@ -35,23 +35,39 @@ soundPosts.forEach(elm => soundDiv.appendChild(elm))
 setTimeout(() => codePosts.forEach(elm => elm.classList.remove('o-0')), 150)
 setTimeout(() => soundPosts.forEach(elm => elm.classList.remove('o-0')), 150)
 
-function makeHandleSountTitleClick(post) {
+
+function makeTitleClickHandler(sound, post) {
   return function (evt) {
     if (evt.ctrlKey || evt.shiftKey || evt.metaKey || (evt.button && evt.button == 1)) return
-
+    
     evt.preventDefault()
-
-    codeDiv.style.transition = 'transform .25s ease-out'
-    codeDiv.style.transform = 'translateX(-100%)'
-
-    soundDiv.style.transition = 'opacity .25s ease-out'
-    soundDiv.classList.add('o-0')
+    
+    if (sound) {
+      codeDiv.style.transition = 'transform .25s ease-out'
+      codeDiv.style.transform = 'translateX(-100%)'
+      
+      soundDiv.style.transition = 'opacity .25s ease-out'
+      soundDiv.classList.add('o-0')
+    } else {
+      document.body.classList.add('bg-black')
+      soundDiv.style.transition = 'transform .25s ease-out'
+      soundDiv.style.transform = 'translateX(100%)'
+      
+      codeDiv.style.transition = 'opacity .25s ease-out'
+      codeDiv.classList.add('o-0')
+    }
 
     setTimeout(() => {
-      codeDiv.parentNode.removeChild(codeDiv)
-      soundDiv.parentNode.removeChild(soundDiv)
+      if (sound) {
+        soundDiv.parentNode.removeChild(soundDiv)
+        codeDiv.parentNode.removeChild(codeDiv)
+        loadPostPage(post, true)
+      } else {
+        codeDiv.parentNode.removeChild(codeDiv)
+        soundDiv.parentNode.removeChild(soundDiv)
+        loadPostPage(post, false)
+      }
 
-      loadPostPage(post)
     }, 250)
   }
 }
